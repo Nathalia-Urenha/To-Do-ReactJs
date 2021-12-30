@@ -16,17 +16,15 @@ export function TaskList() {
 
   function handleCreateNewTask() {
     // Crie uma nova task com um id random, não permita criar caso o título seja vazio.
-    if(newTaskTitle != ''){
-      const dados = {
-        id: Math.random(),
-        title: newTaskTitle,
-        isComplete: false
-      }
-      setTasks(oldState => [...oldState, dados]);
-      setNewTaskTitle('');
-    }else{
-      alert("Você deve preencher o campo!")
+    if(!newTaskTitle) return;
+
+    const dados = {
+      id: Math.random(),
+      title: newTaskTitle,
+      isComplete: false
     }
+    setTasks(oldState => [...oldState, dados]);
+    setNewTaskTitle('');
   }
 
   function handleToggleTaskCompletion(id: number) {
@@ -52,7 +50,7 @@ export function TaskList() {
         <div className="input-group">
           <input 
             type="text" 
-            placeholder="Adicionar novo to-do" 
+            placeholder="Adicionar novo todo" 
             onChange={(e) => setNewTaskTitle(e.target.value)}
             value={newTaskTitle}
           />
